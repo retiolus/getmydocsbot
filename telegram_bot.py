@@ -38,7 +38,7 @@ def doc(message):
 #        l_gif_p = len(gif_p)
 #        gif_p = gif_p[0 : l_gif_p-1]
 #        gif = open(gif_p, 'rb')
-        tb.send_document(message.chat.id, gif, timeout=1000)      
+#        tb.send_document(message.chat.id, gif, timeout=1000)      
         tb.reply_to(message, "This document does not exist or its name contains invalid characters.")
     elif len(p_list)==1: #if one path
         my_file = Path(f_path)
