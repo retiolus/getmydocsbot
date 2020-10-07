@@ -32,13 +32,24 @@ def doc(message):
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True) #create the image selection keyboard
     
     if len(p_list)==0: #if no path
-        tb.reply_to(message, "This document does not exist or its name contains invalid characters.")
+        gif_p = os.popen("find gifs/ -type f | shuf -n 1").read()
+        l_gif_p = len(gif_p)
+        gif_p = gif_p[0 : l_gif_p-1]
+        gif = open(gif_p, 'rb')
+        tb.send_document(message.chat.id, gif, timeout=1000)
+#        tb.reply_to(message, "This document does not exist or its name contains invalid characters.")
     elif len(p_list)==1: #if one path
         my_file = Path(f_path)
         if my_file.is_file(): #if path exists
             doc = open(f_path, 'rb')
             tb.send_document(message.chat.id, doc, timeout=1000)
-        else: tb.reply_to(message, "This document does not exist or its name contains invalid characters.") #if path doesn't exists
+        else: 
+            gif_p = os.popen("find gifs/ -type f | shuf -n 1").read()
+            l_gif_p = len(gif_p)
+            gif_p = gif_p[0 : l_gif_p-1]
+            gif = open(gif_p, 'rb')
+            tb.send_document(message.chat.id, gif, timeout=1000)
+#            tb.reply_to(message, "This document does not exist or its name contains invalid characters.") #if path doesn't exists
     else: #if more than one path
         for i in p_list: #create the image selection keyboard
             ic = os.path.split(i)
