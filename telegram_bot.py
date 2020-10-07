@@ -9,11 +9,13 @@ TOKEN = '<TOKEN>'
 tb = telebot.TeleBot(TOKEN)	#create a new Telegram Bot object
 
 p_path = "</parent/path>" #parent directory
+b_path = "</bot/path>" #directory path of the bot
+gifs = "gifs/" #gifs directory path
 
 #send a tree structure of parent directory when user send /find
 @tb.message_handler(commands=['find'])
 def find(message):
-   os.system ("tree " + p_path + " > tree.txt") #create txt file with tree structure
+   os.system ("tree " + p_path + " > " + b_path + "/tree.txt") #create txt file with tree structure
    doc = open('tree.txt')
    tb.send_document(message.chat.id, doc)
    
@@ -24,7 +26,7 @@ def doc(message):
     l_c_message = len(c_message) #lenght of c_message
     c_message = c_message[5:l_c_message] #delete "/doc" from c_message
     
-    f_path = os.popen("find " + p_path + " -type f -name *" + (c_message) + "*").read() #full path
+    f_path = os.popen("find " + p_path + " -type f -name '*" + c_message + "*'").read() #full path
     l_f_path = len(f_path) #lenght of full path
     f_path = f_path[0 : l_f_path-1] 
     p_list = f_path.split("\n") #create a list of paths
@@ -36,7 +38,7 @@ def doc(message):
         l_gif_p = len(gif_p)
         gif_p = gif_p[0 : l_gif_p-1]
         gif = open(gif_p, 'rb')
-        tb.send_document(message.chat.id, gif, timeout=1000)
+        tb.send_document(message.chat.id, gif, timeout=1000)        
 #        tb.reply_to(message, "This document does not exist or its name contains invalid characters.")
     elif len(p_list)==1: #if one path
         my_file = Path(f_path)
@@ -48,7 +50,7 @@ def doc(message):
             l_gif_p = len(gif_p)
             gif_p = gif_p[0 : l_gif_p-1]
             gif = open(gif_p, 'rb')
-            tb.send_document(message.chat.id, gif, timeout=1000)
+            tb.send_document(message.chat.id, gif, timeout=1000)        
 #            tb.reply_to(message, "This document does not exist or its name contains invalid characters.") #if path doesn't exists
     else: #if more than one path
         for i in p_list: #create the image selection keyboard
