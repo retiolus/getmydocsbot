@@ -6,11 +6,12 @@ from os import path
 from pathlib import Path
 
 TOKEN = '<TOKEN>'
-tb = telebot.TeleBot(TOKEN)	#create a new Telegram Bot object
 
 p_path = "</parent/path>" #parent directory
 b_path = "</bot/path>" #directory path of the bot
 gifs = "gifs/" #gifs directory path
+
+tb = telebot.TeleBot(TOKEN)	#create a new Telegram Bot object
 
 @tb.message_handler(commands=['start'])
 def start(message):
