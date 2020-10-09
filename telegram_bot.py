@@ -45,24 +45,28 @@ def doc(message):
 #        gif = open(gif_p, 'rb')
 #        tb.send_document(message.chat.id, gif, timeout=1000)
         tb.reply_to(message, "This document does not exist or its name contains invalid characters.")
+
     elif len(p_list)==1: #if one path
         my_file = Path(f_path)
         if my_file.is_file(): #if path exists
             doc = open(f_path, 'rb')
             tb.send_document(message.chat.id, doc, timeout=1000)
+            tb.delete_message(message.chat.id, message.message_id,timeout=1000)
         else:
 #            gif_p = os.popen("find gifs/ -type f | shuf -n 1").read()
 #            l_gif_p = len(gif_p)
 #            gif_p = gif_p[0 : l_gif_p-1]
 #            gif = open(gif_p, 'rb')
 #            tb.send_document(message.chat.id, gif, timeout=1000)
-            tb.reply_to(message, "This document does not exist or its name contains invalid characters.") #if path doesn't exists
+            tb.reply_to(message, "This document does not exist or its name contains invalid characters.")
+
     else: #if more than one path
+        tb.delete_message(message.chat.id, message.message_id,timeout=1000)
         for i in p_list: #create the image selection keyboard
             ic = os.path.split(i)
             itembtn = types.KeyboardButton("/doc " + ic[1])
             markup.row(itembtn)
 
-        tb.send_message(message.chat.id, "Document to be sent :", reply_markup=markup)
+        bot_msg = tb.send_message(message.chat.id, "Document to be sent :", reply_markup=markup)
 
 tb.polling(none_stop=True)
