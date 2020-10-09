@@ -25,6 +25,7 @@ async def on_message(message):
         doc = open(b_path + '/tree.txt')
         channel = client.get_channel(762760304186359892)
         await message.channel.send(file=discord.File(doc))
+        await message.delete(delay=5)
 
     if message.content.startswith('/doc'):
         c_message = message.content #clean message
@@ -54,5 +55,7 @@ async def on_message(message):
                 ic = os.path.split(i)
                 await message.channel.send(ic[1], delete_after=30)
             await message.channel.send("Choose one of these documents. :arrow_heading_up:", delete_after=30)
+
+        await message.delete(delay=15)
 
 client.run(TOKEN)
