@@ -61,7 +61,7 @@ def doc(message):
             tb.reply_to(message, "This document does not exist or its name contains invalid characters.")
 
     else: #if more than one path
-        tb.delete_message(message.chat.id, message.message_id,timeout=1000)
+#        tb.delete_message(message.chat.id, message.message_id,timeout=1000)
         for i in p_list: #create the image selection keyboard
             ic = os.path.split(i)
             itembtn = types.KeyboardButton("/doc " + ic[1])
