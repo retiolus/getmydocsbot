@@ -12,7 +12,7 @@ p_path = "</parent/path>" #parent directory
 b_path = "</bot/path>" #directory path of the bot
 gifs = "gifs/" #gifs directory path
 
-tb.message_handler(commands=['start'])
+@tb.message_handler(commands=['start'])
 def start(message):
     tb.reply_to(message, "<Your welcome message.>")
 
