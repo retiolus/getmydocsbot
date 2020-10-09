@@ -51,7 +51,7 @@ def doc(message):
         if my_file.is_file(): #if path exists
             doc = open(f_path, 'rb')
             tb.send_document(message.chat.id, doc, timeout=1000)
-            tb.delete_message(message.chat.id, message.message_id,timeout=1000)
+#            tb.delete_message(message.chat.id, message.message_id,timeout=1000)
         else:
 #            gif_p = os.popen("find gifs/ -type f | shuf -n 1").read()
 #            l_gif_p = len(gif_p)
