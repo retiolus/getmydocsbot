@@ -44,7 +44,8 @@ async def on_message(message):
             my_file = Path(f_path)
             if my_file.is_file(): #if file exists
                 doc = open(f_path, 'rb')
-                await message.channel.send(file=discord.File(doc))
+                file_name = os.path.split(f_path)
+                await message.channel.send(file=discord.File(doc, filename=str(file_name[1])))
 
             else:
                 await message.channel.send("This document does not exist or its name contains invalid characters.", delete_after=30)
