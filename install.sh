@@ -1,3 +1,3 @@
 sudo apt install tree
 pip install pyTelegramBotAPI
-python3 -m pip install -U discord.py
+pip install python-telegram-bot --upgrade
