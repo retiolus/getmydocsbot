@@ -1,8 +1,12 @@
-#Telegram TOKEN
+#Files directory
+FPATH = "</path/>"
+
+#Bot directory
+BPATH = "</path/>"
+
+#TELEGRAM
 TTOKEN = "<TOKEN>"
 
-#Discord TOKEN
+#DISCORD
 DTOKEN = "<TOKEN>"
 
-#Directory path
-data = "</path/>
