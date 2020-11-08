@@ -1,13 +1,14 @@
 import discord
+import config
 import os
 import os.path
 from os import path
 from pathlib import Path
 
-TOKEN = '<TOKEN>'
+TOKEN = config.DTOKEN
 
-p_path = "</parent/path>" #parent directory
-b_path = "</bot/path>" #directory path of the bot
+p_path = config.DPATH #parent directory
+b_path = config.BPATH #directory path of the bot
 
 client = discord.Client()
 
