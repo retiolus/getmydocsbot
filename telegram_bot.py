@@ -11,8 +11,8 @@ import subprocess
 
 TOKEN = config.TTOKEN
 
-p_path = config.FPATH #Files directory
-b_path = config.BPATH #directory path of the bot
+fpath = config.FPATH #Files directory
+bpath = config.BPATH #directory path of the bot
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
@@ -24,8 +24,8 @@ def start(update, context):
 #     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 def find(update, context):
-    os.system ("tree " + p_path + " > " + b_path + "/tree.txt") #create txt file with tree structure
-    doc = open(b_path + '/tree.txt', 'rb')
+    os.system ("tree " + fpath + " > " + bpath + "/tree.txt") #create txt file with tree structure
+    doc = open(bpath + '/tree.txt', 'rb')
     chat_id = str(update.effective_chat.id)
     context.bot.send_document(chat_id, document=doc)
 
@@ -38,7 +38,7 @@ def doc(update, context):
         c_message = str(context.args[0])
         print(c_message)
 
-        f_path = subprocess.check_output("find " + p_path + " -type f -name '*" + c_message + "*'", shell=True).splitlines()
+        f_path = subprocess.check_output("find " + fpath + " -type f -name '*" + c_message + "*'", shell=True).splitlines()
         print(f_path)
         p_list = f_path
 
