@@ -25,7 +25,7 @@ async def on_message(message):
     if message.content.startswith('/find'):
         os.system ("tree " + p_path + " > " + b_path + "/tree.txt") #create txt file with tree structure
         doc = open(b_path + '/tree.txt')
-        channel = client.get_channel(762760304186359892)
+        # channel = client.get_channel(762760304186359892)
         await message.channel.send(file=discord.File(doc))
 
     if message.content.startswith('/doc'):
