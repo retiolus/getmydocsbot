@@ -6,6 +6,7 @@ from os import path
 from pathlib import Path
 import time
 import logging
+import config
 
 TOKEN = config.TTOKEN
 
