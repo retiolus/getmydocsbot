@@ -7,10 +7,10 @@ from pathlib import Path
 import time
 import logging
 
-TOKEN = '<TOKEN>'
+TOKEN = config.TTOKEN
 
-p_path = "</parent/path>" #parent directory
-b_path = "</bot/path>" #directory path of the bot
+p_path = config.FPATH #Files directory
+b_path = config.BPATH #directory path of the bot
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
