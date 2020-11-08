@@ -7,6 +7,7 @@ from pathlib import Path
 import time
 import logging
 import config
+import subprocess
 
 TOKEN = config.TTOKEN
 
@@ -37,16 +38,15 @@ def doc(update, context):
         c_message = str(context.args[0])
         print(c_message)
 
-        f_path = os.popen("find " + p_path + " -type f -name '*" + c_message + "*'").read() #full path
+        f_path = subprocess.check_output("find " + p_path + " -type f -name '*" + c_message + "*'", shell=True).splitlines()
         print(f_path)
-        l_f_path = len(f_path) #lenght of full path
-        f_path = f_path[0 : l_f_path-1]
-        p_list = f_path.split("\n") #create a list of paths
+        p_list = f_path
 
         if len(p_list)==0: #if no path
             context.bot.send_message(chat_id=update.effective_chat.id, text="This document does not exist or its name contains invalid characters.")
 
         elif len(p_list)==1: #if one path
+            f_path = f_path[0].decode('utf-8')
             my_file = Path(f_path)
             if my_file.is_file(): #if path exists
                 doc = open(f_path, 'rb')
@@ -60,7 +60,7 @@ def doc(update, context):
             keyboard=[]
             for i in p_list:
                 ic = os.path.split(i)
-                itembtn = KeyboardButton("/doc " + ic[1])
+                itembtn = KeyboardButton("/doc " + ic[1].decode('utf-8'))
                 keyboard.append([itembtn])
 
             print(keyboard)
