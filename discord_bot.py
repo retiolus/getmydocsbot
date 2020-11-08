@@ -7,7 +7,7 @@ from pathlib import Path
 
 TOKEN = config.DTOKEN
 
-p_path = config.DPATH #parent directory
+p_path = config.FPATH #files directory
 b_path = config.BPATH #directory path of the bot
 
 client = discord.Client()
